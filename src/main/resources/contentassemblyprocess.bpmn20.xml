@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+        xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+        xmlns:flowable="http://flowable.org/bpmn"
+        targetNamespace="http://www.flowable.org/processdef">
+
+    <process id="contentAssembly" name="Content Assembly"
+             isExecutable="true">
+
+        <startEvent id="startOfProcessEvent" />
+        <sequenceFlow sourceRef="startOfProcessEvent"
+                      targetRef="externalSystemCall" />
+
+        <serviceTask id="externalSystemCall"
+                     name="External Processing Content Assembly Service"
+                     flowable:class="com.sap.sample.contentAssembly.ContentAssemblyProcessDelegate" />
+
+        <sequenceFlow sourceRef="externalSystemCall"
+                      targetRef="endOfProcessEvent" />
+
+        <endEvent id="endOfProcessEvent" />
+    </process>
+
+</definitions>
