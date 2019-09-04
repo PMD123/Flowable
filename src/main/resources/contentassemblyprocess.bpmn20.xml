@@ -8,14 +8,21 @@
              isExecutable="true">
 
         <startEvent id="startOfProcessEvent" />
+<!--        <sequenceFlow sourceRef="startOfProcessEvent"-->
+<!--                      targetRef="externalSystemCall" />-->
+
+<!--        <serviceTask id="externalSystemCall"-->
+<!--                     name="External Processing Content Assembly Service"-->
+<!--                     flowable:class="com.sap.sample.contentAssembly.ContentAssemblyProcessDelegate" />-->
+
         <sequenceFlow sourceRef="startOfProcessEvent"
-                      targetRef="externalSystemCall" />
+                      targetRef="task1" />
 
-        <serviceTask id="externalSystemCall"
-                     name="External Processing Content Assembly Service"
-                     flowable:class="com.sap.sample.contentAssembly.ContentAssemblyProcessDelegate" />
+        <serviceTask id="task1"
+                     name="Task 1"
+                     flowable:expression="${helloWorld.execute()}" />
 
-        <sequenceFlow sourceRef="externalSystemCall"
+        <sequenceFlow sourceRef="task1"
                       targetRef="endOfProcessEvent" />
 
         <endEvent id="endOfProcessEvent" />

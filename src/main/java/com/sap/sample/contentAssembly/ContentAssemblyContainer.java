@@ -32,11 +32,11 @@ public class ContentAssemblyContainer {
         LOGGER.info("Process Engine Name: " + objProcEngine.getName());
         deployDefinedProcess();
 
-        find();
+        //find();
 
-        /*startProcess();
+        startProcess();
 
-        monitorProcess();*/
+        //monitorProcess();
     }
 
     public void deployDefinedProcess() {
@@ -56,11 +56,13 @@ public class ContentAssemblyContainer {
     }
 
     public void startProcess() {
+        LOGGER.info("Trying to start Process...");
         RuntimeService runtimeService = objProcEngine.getRuntimeService();
         Map<String, Object> objParameters = new HashMap<String, Object>();
         objParameters.put("URLSource",
                 "https://www.flowable.org/docs/userguide/index.html#_starting_a_process_instance");
         objProcessInstance = runtimeService.startProcessInstanceByKey("contentAssembly", objParameters);
+        LOGGER.info("Process has started!!");
     }
 
     public void find() {
